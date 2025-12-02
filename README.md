@@ -5,34 +5,23 @@ Super-Whisper-WebUI 是一个基于 `stable-ts` (Whisper 的增强版) 构建的
 ![界面截图](img.png)
 ---
 
-## ✨ 核心功能
+## 📦 可执行版本下载 (推荐)
 
-- **一键启动**: 运行脚本后自动在浏览器中打开应用界面，无需手动输入地址。
-- **可视化 Web 界面**: 通过浏览器即可轻松上传音频文件，告别命令行。
-- **高度可定制**: 自由选择和组合不同的 AI 模型与参数，以适应各种需求。
-    - **多语言支持**: 支持中文、英语、日语等语言的识别，或选择自动检测。
-    - **多种 Whisper 模型**: 可在 `tiny`, `base`, `small`, `medium`, `large` 模型之间切换，在速度和准确率之间做权衡。
-    - **双 VAD 引擎**: 可选用高效的 `Silero-VAD` (推荐) 或可微调的 `Whisper 原生 VAD`。
-    - **强力降噪模式**: 可选开启 `Demucs` 背景音分离，以处理极其嘈杂的音频（处理速度变慢）。
-    - **GPU 加速**: 支持 NVIDIA 显卡加速，可将处理速度提升数倍。
-- **输出格式**: 直接在内存中生成 `.srt` (字幕) 和 `.txt` (纯文本) 文件，供用户下载。
+对于不希望配置 Python 环境的普通用户，我们提供了已打包好的可执行文件，开箱即用。
 
----
+| 版本 | 适用用户 | 下载链接 | 文件大小 |
+| :--- | :--- | :--- | :--- |
+| **CPU 版本** | 适用于所有用户，尤其是没有 NVIDIA 显卡的用户。 | [**从 GitHub 下载**](https://github.com/xiaodianqi/Super-Whisper-WebUI/releases) | ~260 MB |
+| **GPU 版本** | 需拥有 NVIDIA 显卡，性能更强，速度更快。 | [**从夸克网盘下载**](https://pan.quark.cn/s/e31a94a51a97) | ~2.5 GB |
 
-## 🛠️ 技术栈
-
-- **项目管理**: `uv`
-- **后端**: Python, Flask, Uvicorn, a2wsgi
-- **核心识别引擎**: `stable-ts` (基于 `openai-whisper`)
-- **异步任务**: Python `concurrent.futures.ProcessPoolExecutor`
-- **前端**: HTML, CSS, JavaScript (无框架)
-- **可选加速**: `PyTorch` (CUDA 版本), `Demucs`
+### 使用方法
+双击运行 `.exe` 文件即可！程序会自动在您的默认浏览器中打开应用界面。
 
 ---
 
-## 🚀 快速开始 (uv)
+## 🚀 快速开始 (开发者)
 
-本项目使用 `uv` 进行包和环境管理，它是一个超高速的 `pip` 和 `venv` 替代品。
+如果你是开发者，并希望从源码运行，请遵循以下步骤。本项目使用 `uv` 进行包和环境管理，它是一个超高速的 `pip` 和 `venv` 替代品。
 
 ### 1. 环境准备
 
@@ -91,10 +80,9 @@ uv pip install -e ".[cpu]"
 
 这是最关键的一步。请访问 [PyTorch 官网](https://pytorch.org/get-started/locally/)，根据您的操作系统和 `nvidia-smi` 命令显示的 CUDA 版本，生成并运行正确的 `torch` 安装命令。
 
-例如，对于 CUDA 12.1，命令如下（**请务必使用官网生成的命令！**）：
+例如，对于 CUDA 12.1，命令如下：
 
 ```sh
-# 这是一个示例命令，请勿直接复制！
 uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
 ```
 安装后，运行 `uv run python -c "import torch; print(torch.cuda.is_available())"` 来验证。如果输出 `True`，则说明 GPU 环境配置成功，可以继续下一步。
