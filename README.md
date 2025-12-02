@@ -80,10 +80,10 @@ uv pip install -e ".[cpu]"
 
 这是最关键的一步。请访问 [PyTorch 官网](https://pytorch.org/get-started/locally/)，根据您的操作系统和 `nvidia-smi` 命令显示的 CUDA 版本，生成并运行正确的 `torch` 安装命令。
 
-例如，对于 CUDA 12.1，命令如下：
+例如，对于 CUDA 12.8，命令如下：
 
 ```sh
-uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+uv pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 ```
 安装后，运行 `uv run python -c "import torch; print(torch.cuda.is_available())"` 来验证。如果输出 `True`，则说明 GPU 环境配置成功，可以继续下一步。
 
