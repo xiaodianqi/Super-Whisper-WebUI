@@ -2318,7 +2318,7 @@ wheels = [
 ]
 
 [[package]]
-name = "super-whisper-webui"
+name = "whisper-webui"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
